@@ -2,9 +2,9 @@
 #导入模块
 import openpyxl
 from openpyxl import *
-#导入工作簿文件
+#连接工作簿文件
 book1 = load_workbook('test.xlsx')
-#导入工作表
+#连接工作表
 sheet1 = book1['Sheet1']
 #获取数据总行数
 row_total = sheet1.max_row

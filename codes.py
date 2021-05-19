@@ -27,7 +27,7 @@ def data_flush(raw_data,hours_last = 24):
             z.append(float(raw_data[row][30:33])) #提取温度值
     return x1,x2,y,z,
 #2. 绘图函数
-def plot_pic(x,y,x_locator=180,y_locator = 0.5,*para):
+def plot_pic(x,y,y_locator = 0.5,*para):
     #建立图表区
     fig = pl.figure(figsize=(15,5))
     print('-------------------------------------------------')
@@ -51,7 +51,7 @@ def plot_pic(x,y,x_locator=180,y_locator = 0.5,*para):
     pl.savefig('./作图/{2}变化_{1}至{0}.jpg'.format(x[-1],x[0],para[4]))
     #简单的交互
     print('完成！')
-    print('以下是{0}到{1}时间范围内约{2}小时的{3}变化曲线：'.format(x[0],x[-1],round(len(x)/60),para[4]))
+    print('以下是{0}到{1}时间范围内约{2}小时开机时间的{3}变化曲线：'.format(x[0],x[-1],round(len(x)/60),para[4]))
     pl.show()
 #3. 输入判断器
 def is_number(s):
@@ -88,7 +88,7 @@ x1,x2,y,z= data_flush(raw_data,hours_last)
 data.close()
 '''
 绘图函数参数：
-plot(x,y,x坐标密度,y坐标密度,*[y坐标轴标题, x坐标轴标题, y下限, y上限, y标签])
+plot(x,y,y坐标密度,*[y坐标轴标题, x坐标轴标题, y下限, y上限, y标签])
 '''
-plot_pic(x1,y,x_locator,0.5,*['Pressure /Mpa', 'Time /min',0,8,'压力'])
-plot_pic(x2,z,x_locator,1,*['T /°C', 'Time / min',175,190,'温度'])
+plot_pic(x1,y,0.5,*['Pressure /Mpa', 'Time /min',0,8,'压力'])
+plot_pic(x2,z,1,*['T /°C', 'Time / min',175,190,'温度'])
